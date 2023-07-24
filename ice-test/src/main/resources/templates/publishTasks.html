@@ -73,12 +73,13 @@
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
-            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            <button type="reset" class="layui-btn layui-btn-primary" id="resetForm">重置</button>
         </div>
     </div>
 </form>
 
 <script th:inline="javascript">
+
     let publisher=[[${publisher}]];
     console.log(publisher)
     //Demo
@@ -95,6 +96,13 @@
             elem: '#endTime' //指定元素
             ,format: 'yyyy年MM月dd日'
             ,min: 0 //昨天前都不能设置
+        });
+
+        // 监听重置按钮的点击事件
+        $('#resetForm').click(function(){
+            $('#demo1').attr('src', "");
+            // 清空表单
+            layui.form.render();
         });
 
         //监听提交，提交完之后不要跳转页面，因此推荐ajax提交数据
@@ -127,6 +135,12 @@
             return false;
         });
 
+        //重置事件，将图片进行重置
+        form.on('submit(resetImage)', function(){
+            // 在这里编写点击事件的处理逻辑
+            console.log('按钮被点击了');
+            return false; // 阻止表单提交
+        });
 
         //普通图片上传:这里我们看到，未点击提交前，图片就已经传送给了后端
         var uploadInst = upload.render({
