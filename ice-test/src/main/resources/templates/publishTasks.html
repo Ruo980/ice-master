@@ -102,6 +102,8 @@
         $('#resetForm').click(function(){
             $('#demo1').attr('src', "");
             // 清空表单
+            var fileupload = $(".image");
+            fileupload.attr("value", "");
             layui.form.render();
         });
 
@@ -151,7 +153,6 @@
             , before: function (obj) {
 
                 obj.preview(function (index, file, result) {
-
                     $('#demo1').attr('src', result);
                 });
             }

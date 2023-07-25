@@ -102,7 +102,10 @@
         $('#resetForm').click(function(){
             $('#demo1').attr('src', "");
             // 清空表单
+            var fileupload = $(".image");
+            fileupload.attr("value", "");
             layui.form.render();
+
         });
 
 
